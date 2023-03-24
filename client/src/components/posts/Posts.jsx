@@ -4,7 +4,7 @@ import {useQuery} from '@tanstack/react-query'
 import { makeRequest } from "../../axios";
 
   //TEMPORARY
-  const Posts = () => {
+  const Posts = ({userId}) => {
    
     // const fetchPosts = async () =>{
     //   const response = await axios.get(`http://localhost:8080/api/posts/${userId}`);
@@ -16,7 +16,7 @@ import { makeRequest } from "../../axios";
     
 
     const { isLoading, error, data } = useQuery(["posts"], () =>
-      makeRequest.get("/posts").then((res) => {
+      makeRequest.get("/posts?userId="+userId).then((res) => {
         return res.data;
       })
     );

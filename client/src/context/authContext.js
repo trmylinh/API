@@ -13,17 +13,25 @@ export const AuthContextProvider = ({ children }) => {
     const res = await axios.post("http://localhost:8080/api/auth/login",inputs,{
       withCredentials: true
     });
-
+    // localStorage.setItem("user", JSON.stringify(currentUser));
+    console.log("Click login");
+    console.log('currentUser'+ currentUser);
     setCurrentUser(res.data);
   };
 
+  //useEffect chay cuoi cung, sau tat ca lan re-render
+  // xem currentUser la thang nao de gan vao localStorage
   useEffect(() => {
+    console.log("UseEffect run");
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
-  console.log(currentUser);
+
+  // console.log(currentUser);
   return (
     <AuthContext.Provider value={{ currentUser, login }}>
-      {children}
+      {/* -> App.js */}
+      {console.log('re-render')}
+       {children}  
     </AuthContext.Provider>
   );
 };

@@ -23,12 +23,13 @@ const Login = () => {
     // đồng thời thay đổi dữ liệu và refresh
     e.preventDefault();
     try{
-      await  login(inputs);
+      await login(inputs);
       navigate("/");
     }
     catch(err){
       setErr(err.response.data);
     }
+ 
    
   };
 
